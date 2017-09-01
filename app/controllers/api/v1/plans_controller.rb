@@ -7,7 +7,13 @@ module Api::V1
 
     def create
     	@plan = Plan.create(plan_params)
-    	render json:@plan
+    	render json: @plan
+    end
+
+    def update
+    	@plan =Plan.find(params[:id])
+    	@plan.update_attributes(plan_params)
+    	render json: @plan
     end
 
     private
