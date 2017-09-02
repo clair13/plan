@@ -16,6 +16,15 @@ module Api::V1
     	render json: @plan
     end
 
+    def destroy
+      @plan = Plan.find(params[:id])
+      if @plan.destroy
+        head :no_content, status: :ok
+      else
+        render json: @plan.errors, status: :unprocessable_entity
+      end
+    end
+
     private
 
     def plan_params
